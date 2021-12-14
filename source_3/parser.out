@@ -1,0 +1,4298 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statements statement
+Rule 3     statements -> statement
+Rule 4     statement -> assignment
+Rule 5     statement -> operation
+Rule 6     statement -> print
+Rule 7     statement -> modification
+Rule 8     statement -> iF
+Rule 9     statement -> whilE
+Rule 10    statement -> for
+Rule 11    statement -> break
+Rule 12    statement -> return
+Rule 13    statement -> function
+Rule 14    statement -> runfunction
+Rule 15    statement -> class
+Rule 16    statement -> runclass
+Rule 17    statement -> runclassfunction
+Rule 18    break -> BREAK statements
+Rule 19    break -> BREAK
+Rule 20    return -> RETURN
+Rule 21    for -> FOR ( operation ; condition ; operation ) { statements }
+Rule 22    condition -> VARIABLE > VARIABLE
+Rule 23    condition -> VARIABLE < VARIABLE
+Rule 24    condition -> VARIABLE > NUMBER
+Rule 25    condition -> VARIABLE < NUMBER
+Rule 26    condition -> VARIABLE < = VARIABLE
+Rule 27    condition -> VARIABLE > = VARIABLE
+Rule 28    condition -> VARIABLE [ factor ] > VARIABLE
+Rule 29    condition -> VARIABLE [ factor ] < VARIABLE
+Rule 30    condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE
+Rule 31    condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE
+Rule 32    iF -> IF ( condition ) { statements }
+Rule 33    iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+Rule 34    whilE -> WHILE ( condition ) { statements }
+Rule 35    assignment -> VARIABLE = NUMBER
+Rule 36    assignment -> VARIABLE = [ sentence ]
+Rule 37    assignment -> SELF . VARIABLE = VARIABLE
+Rule 38    modification -> VARIABLE [ factor ] = VARIABLE [ factor ]
+Rule 39    modification -> VARIABLE [ factor ] = VARIABLE
+Rule 40    modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+Rule 41    operation -> VARIABLE = expression
+Rule 42    operation -> VARIABLE + +
+Rule 43    operation -> VARIABLE - -
+Rule 44    expression -> expression + term
+Rule 45    expression -> expression - term
+Rule 46    expression -> term
+Rule 47    expression -> VARIABLE [ factor ]
+Rule 48    expression -> LEN ( term )
+Rule 49    term -> term * factor
+Rule 50    term -> term / factor
+Rule 51    term -> term / / factor
+Rule 52    term -> factor
+Rule 53    factor -> VARIABLE
+Rule 54    factor -> ( expression )
+Rule 55    factor -> NUMBER
+Rule 56    print -> PRINT ( sentence )
+Rule 57    sentence -> word , sentence
+Rule 58    sentence -> word
+Rule 59    word -> NUMBER
+Rule 60    word -> VARIABLE
+Rule 61    function -> DEF VARIABLE ( sentence ) { statements }
+Rule 62    function -> DEF VARIABLE ( SELF , sentence ) { statements }
+Rule 63    function -> DEF VARIABLE ( SELF ) { statements }
+Rule 64    runfunction -> VARIABLE ( sentence )
+Rule 65    class -> CLASS VARIABLE { init statements }
+Rule 66    init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements }
+Rule 67    runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+Rule 68    runclassfunction -> VARIABLE . VARIABLE ( NUMBER )
+Rule 69    runclassfunction -> VARIABLE . VARIABLE ( )
+
+Terminals, with rules where they appear
+
+(                    : 21 32 33 33 34 48 54 56 61 62 63 64 66 67 68 69
+)                    : 21 32 33 33 34 48 54 56 61 62 63 64 66 67 68 69
+*                    : 49
++                    : 40 42 42 44
+,                    : 57 62 66 66 66 67 67
+-                    : 43 43 45
+.                    : 37 40 40 68 69
+/                    : 50 51 51
+;                    : 21 21
+<                    : 23 25 26 29 30 31 31
+=                    : 26 27 31 35 36 37 38 39 40 41 67
+>                    : 22 24 27 28 30
+AND                  : 30 31
+BREAK                : 18 19
+CLASS                : 65
+DEF                  : 61 62 63 66
+ELIF                 : 33
+ELSE                 : 33
+FOR                  : 21
+IF                   : 32 33
+INIT                 : 66
+LEN                  : 48
+NUMBER               : 24 25 35 55 59 67 67 68
+PRINT                : 56
+RETURN               : 20
+SELF                 : 37 40 40 62 63 66
+STR                  : 67
+VARIABLE             : 22 22 23 23 24 25 26 26 27 27 28 28 29 29 30 30 30 30 31 31 31 31 35 36 37 37 38 38 39 39 40 40 40 41 42 43 47 53 60 61 62 63 64 65 66 66 66 67 67 68 68 69 69
+WHILE                : 34
+[                    : 28 29 30 31 36 38 38 39 47
+]                    : 28 29 30 31 36 38 38 39 47
+error                : 
+{                    : 21 32 33 33 33 34 61 62 63 65 66
+}                    : 21 32 33 33 33 34 61 62 63 65 66
+
+Nonterminals, with rules where they appear
+
+assignment           : 4
+break                : 11
+class                : 15
+condition            : 21 32 33 33 34
+expression           : 41 44 45 54
+factor               : 28 29 30 31 38 38 39 47 49 50 51 52
+for                  : 10
+function             : 13
+iF                   : 8
+init                 : 65
+modification         : 7
+operation            : 5 21 21
+print                : 6
+program              : 0
+return               : 12
+runclass             : 16
+runclassfunction     : 17
+runfunction          : 14
+sentence             : 36 56 57 61 62 64
+statement            : 2 3
+statements           : 1 2 18 21 32 33 33 33 34 61 62 63 65 66
+term                 : 44 45 46 48 49 50 51
+whilE                : 9
+word                 : 57 58
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    $end            reduce using rule 1 (program -> statements .)
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 3
+
+    (3) statements -> statement .
+
+    VARIABLE        reduce using rule 3 (statements -> statement .)
+    SELF            reduce using rule 3 (statements -> statement .)
+    PRINT           reduce using rule 3 (statements -> statement .)
+    IF              reduce using rule 3 (statements -> statement .)
+    WHILE           reduce using rule 3 (statements -> statement .)
+    FOR             reduce using rule 3 (statements -> statement .)
+    BREAK           reduce using rule 3 (statements -> statement .)
+    RETURN          reduce using rule 3 (statements -> statement .)
+    DEF             reduce using rule 3 (statements -> statement .)
+    CLASS           reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (statements -> statement .)
+    }               reduce using rule 3 (statements -> statement .)
+
+
+state 4
+
+    (4) statement -> assignment .
+
+    VARIABLE        reduce using rule 4 (statement -> assignment .)
+    SELF            reduce using rule 4 (statement -> assignment .)
+    PRINT           reduce using rule 4 (statement -> assignment .)
+    IF              reduce using rule 4 (statement -> assignment .)
+    WHILE           reduce using rule 4 (statement -> assignment .)
+    FOR             reduce using rule 4 (statement -> assignment .)
+    BREAK           reduce using rule 4 (statement -> assignment .)
+    RETURN          reduce using rule 4 (statement -> assignment .)
+    DEF             reduce using rule 4 (statement -> assignment .)
+    CLASS           reduce using rule 4 (statement -> assignment .)
+    $end            reduce using rule 4 (statement -> assignment .)
+    }               reduce using rule 4 (statement -> assignment .)
+
+
+state 5
+
+    (5) statement -> operation .
+
+    VARIABLE        reduce using rule 5 (statement -> operation .)
+    SELF            reduce using rule 5 (statement -> operation .)
+    PRINT           reduce using rule 5 (statement -> operation .)
+    IF              reduce using rule 5 (statement -> operation .)
+    WHILE           reduce using rule 5 (statement -> operation .)
+    FOR             reduce using rule 5 (statement -> operation .)
+    BREAK           reduce using rule 5 (statement -> operation .)
+    RETURN          reduce using rule 5 (statement -> operation .)
+    DEF             reduce using rule 5 (statement -> operation .)
+    CLASS           reduce using rule 5 (statement -> operation .)
+    $end            reduce using rule 5 (statement -> operation .)
+    }               reduce using rule 5 (statement -> operation .)
+
+
+state 6
+
+    (6) statement -> print .
+
+    VARIABLE        reduce using rule 6 (statement -> print .)
+    SELF            reduce using rule 6 (statement -> print .)
+    PRINT           reduce using rule 6 (statement -> print .)
+    IF              reduce using rule 6 (statement -> print .)
+    WHILE           reduce using rule 6 (statement -> print .)
+    FOR             reduce using rule 6 (statement -> print .)
+    BREAK           reduce using rule 6 (statement -> print .)
+    RETURN          reduce using rule 6 (statement -> print .)
+    DEF             reduce using rule 6 (statement -> print .)
+    CLASS           reduce using rule 6 (statement -> print .)
+    $end            reduce using rule 6 (statement -> print .)
+    }               reduce using rule 6 (statement -> print .)
+
+
+state 7
+
+    (7) statement -> modification .
+
+    VARIABLE        reduce using rule 7 (statement -> modification .)
+    SELF            reduce using rule 7 (statement -> modification .)
+    PRINT           reduce using rule 7 (statement -> modification .)
+    IF              reduce using rule 7 (statement -> modification .)
+    WHILE           reduce using rule 7 (statement -> modification .)
+    FOR             reduce using rule 7 (statement -> modification .)
+    BREAK           reduce using rule 7 (statement -> modification .)
+    RETURN          reduce using rule 7 (statement -> modification .)
+    DEF             reduce using rule 7 (statement -> modification .)
+    CLASS           reduce using rule 7 (statement -> modification .)
+    $end            reduce using rule 7 (statement -> modification .)
+    }               reduce using rule 7 (statement -> modification .)
+
+
+state 8
+
+    (8) statement -> iF .
+
+    VARIABLE        reduce using rule 8 (statement -> iF .)
+    SELF            reduce using rule 8 (statement -> iF .)
+    PRINT           reduce using rule 8 (statement -> iF .)
+    IF              reduce using rule 8 (statement -> iF .)
+    WHILE           reduce using rule 8 (statement -> iF .)
+    FOR             reduce using rule 8 (statement -> iF .)
+    BREAK           reduce using rule 8 (statement -> iF .)
+    RETURN          reduce using rule 8 (statement -> iF .)
+    DEF             reduce using rule 8 (statement -> iF .)
+    CLASS           reduce using rule 8 (statement -> iF .)
+    $end            reduce using rule 8 (statement -> iF .)
+    }               reduce using rule 8 (statement -> iF .)
+
+
+state 9
+
+    (9) statement -> whilE .
+
+    VARIABLE        reduce using rule 9 (statement -> whilE .)
+    SELF            reduce using rule 9 (statement -> whilE .)
+    PRINT           reduce using rule 9 (statement -> whilE .)
+    IF              reduce using rule 9 (statement -> whilE .)
+    WHILE           reduce using rule 9 (statement -> whilE .)
+    FOR             reduce using rule 9 (statement -> whilE .)
+    BREAK           reduce using rule 9 (statement -> whilE .)
+    RETURN          reduce using rule 9 (statement -> whilE .)
+    DEF             reduce using rule 9 (statement -> whilE .)
+    CLASS           reduce using rule 9 (statement -> whilE .)
+    $end            reduce using rule 9 (statement -> whilE .)
+    }               reduce using rule 9 (statement -> whilE .)
+
+
+state 10
+
+    (10) statement -> for .
+
+    VARIABLE        reduce using rule 10 (statement -> for .)
+    SELF            reduce using rule 10 (statement -> for .)
+    PRINT           reduce using rule 10 (statement -> for .)
+    IF              reduce using rule 10 (statement -> for .)
+    WHILE           reduce using rule 10 (statement -> for .)
+    FOR             reduce using rule 10 (statement -> for .)
+    BREAK           reduce using rule 10 (statement -> for .)
+    RETURN          reduce using rule 10 (statement -> for .)
+    DEF             reduce using rule 10 (statement -> for .)
+    CLASS           reduce using rule 10 (statement -> for .)
+    $end            reduce using rule 10 (statement -> for .)
+    }               reduce using rule 10 (statement -> for .)
+
+
+state 11
+
+    (11) statement -> break .
+
+    VARIABLE        reduce using rule 11 (statement -> break .)
+    SELF            reduce using rule 11 (statement -> break .)
+    PRINT           reduce using rule 11 (statement -> break .)
+    IF              reduce using rule 11 (statement -> break .)
+    WHILE           reduce using rule 11 (statement -> break .)
+    FOR             reduce using rule 11 (statement -> break .)
+    BREAK           reduce using rule 11 (statement -> break .)
+    RETURN          reduce using rule 11 (statement -> break .)
+    DEF             reduce using rule 11 (statement -> break .)
+    CLASS           reduce using rule 11 (statement -> break .)
+    $end            reduce using rule 11 (statement -> break .)
+    }               reduce using rule 11 (statement -> break .)
+
+
+state 12
+
+    (12) statement -> return .
+
+    VARIABLE        reduce using rule 12 (statement -> return .)
+    SELF            reduce using rule 12 (statement -> return .)
+    PRINT           reduce using rule 12 (statement -> return .)
+    IF              reduce using rule 12 (statement -> return .)
+    WHILE           reduce using rule 12 (statement -> return .)
+    FOR             reduce using rule 12 (statement -> return .)
+    BREAK           reduce using rule 12 (statement -> return .)
+    RETURN          reduce using rule 12 (statement -> return .)
+    DEF             reduce using rule 12 (statement -> return .)
+    CLASS           reduce using rule 12 (statement -> return .)
+    $end            reduce using rule 12 (statement -> return .)
+    }               reduce using rule 12 (statement -> return .)
+
+
+state 13
+
+    (13) statement -> function .
+
+    VARIABLE        reduce using rule 13 (statement -> function .)
+    SELF            reduce using rule 13 (statement -> function .)
+    PRINT           reduce using rule 13 (statement -> function .)
+    IF              reduce using rule 13 (statement -> function .)
+    WHILE           reduce using rule 13 (statement -> function .)
+    FOR             reduce using rule 13 (statement -> function .)
+    BREAK           reduce using rule 13 (statement -> function .)
+    RETURN          reduce using rule 13 (statement -> function .)
+    DEF             reduce using rule 13 (statement -> function .)
+    CLASS           reduce using rule 13 (statement -> function .)
+    $end            reduce using rule 13 (statement -> function .)
+    }               reduce using rule 13 (statement -> function .)
+
+
+state 14
+
+    (14) statement -> runfunction .
+
+    VARIABLE        reduce using rule 14 (statement -> runfunction .)
+    SELF            reduce using rule 14 (statement -> runfunction .)
+    PRINT           reduce using rule 14 (statement -> runfunction .)
+    IF              reduce using rule 14 (statement -> runfunction .)
+    WHILE           reduce using rule 14 (statement -> runfunction .)
+    FOR             reduce using rule 14 (statement -> runfunction .)
+    BREAK           reduce using rule 14 (statement -> runfunction .)
+    RETURN          reduce using rule 14 (statement -> runfunction .)
+    DEF             reduce using rule 14 (statement -> runfunction .)
+    CLASS           reduce using rule 14 (statement -> runfunction .)
+    $end            reduce using rule 14 (statement -> runfunction .)
+    }               reduce using rule 14 (statement -> runfunction .)
+
+
+state 15
+
+    (15) statement -> class .
+
+    VARIABLE        reduce using rule 15 (statement -> class .)
+    SELF            reduce using rule 15 (statement -> class .)
+    PRINT           reduce using rule 15 (statement -> class .)
+    IF              reduce using rule 15 (statement -> class .)
+    WHILE           reduce using rule 15 (statement -> class .)
+    FOR             reduce using rule 15 (statement -> class .)
+    BREAK           reduce using rule 15 (statement -> class .)
+    RETURN          reduce using rule 15 (statement -> class .)
+    DEF             reduce using rule 15 (statement -> class .)
+    CLASS           reduce using rule 15 (statement -> class .)
+    $end            reduce using rule 15 (statement -> class .)
+    }               reduce using rule 15 (statement -> class .)
+
+
+state 16
+
+    (16) statement -> runclass .
+
+    VARIABLE        reduce using rule 16 (statement -> runclass .)
+    SELF            reduce using rule 16 (statement -> runclass .)
+    PRINT           reduce using rule 16 (statement -> runclass .)
+    IF              reduce using rule 16 (statement -> runclass .)
+    WHILE           reduce using rule 16 (statement -> runclass .)
+    FOR             reduce using rule 16 (statement -> runclass .)
+    BREAK           reduce using rule 16 (statement -> runclass .)
+    RETURN          reduce using rule 16 (statement -> runclass .)
+    DEF             reduce using rule 16 (statement -> runclass .)
+    CLASS           reduce using rule 16 (statement -> runclass .)
+    $end            reduce using rule 16 (statement -> runclass .)
+    }               reduce using rule 16 (statement -> runclass .)
+
+
+state 17
+
+    (17) statement -> runclassfunction .
+
+    VARIABLE        reduce using rule 17 (statement -> runclassfunction .)
+    SELF            reduce using rule 17 (statement -> runclassfunction .)
+    PRINT           reduce using rule 17 (statement -> runclassfunction .)
+    IF              reduce using rule 17 (statement -> runclassfunction .)
+    WHILE           reduce using rule 17 (statement -> runclassfunction .)
+    FOR             reduce using rule 17 (statement -> runclassfunction .)
+    BREAK           reduce using rule 17 (statement -> runclassfunction .)
+    RETURN          reduce using rule 17 (statement -> runclassfunction .)
+    DEF             reduce using rule 17 (statement -> runclassfunction .)
+    CLASS           reduce using rule 17 (statement -> runclassfunction .)
+    $end            reduce using rule 17 (statement -> runclassfunction .)
+    }               reduce using rule 17 (statement -> runclassfunction .)
+
+
+state 18
+
+    (35) assignment -> VARIABLE . = NUMBER
+    (36) assignment -> VARIABLE . = [ sentence ]
+    (41) operation -> VARIABLE . = expression
+    (42) operation -> VARIABLE . + +
+    (43) operation -> VARIABLE . - -
+    (38) modification -> VARIABLE . [ factor ] = VARIABLE [ factor ]
+    (39) modification -> VARIABLE . [ factor ] = VARIABLE
+    (64) runfunction -> VARIABLE . ( sentence )
+    (67) runclass -> VARIABLE . = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> VARIABLE . . VARIABLE ( NUMBER )
+    (69) runclassfunction -> VARIABLE . . VARIABLE ( )
+
+    =               shift and go to state 29
+    +               shift and go to state 31
+    -               shift and go to state 32
+    [               shift and go to state 30
+    (               shift and go to state 33
+    .               shift and go to state 34
+
+
+state 19
+
+    (37) assignment -> SELF . . VARIABLE = VARIABLE
+    (40) modification -> SELF . . VARIABLE = SELF . VARIABLE + VARIABLE
+
+    .               shift and go to state 35
+
+
+state 20
+
+    (56) print -> PRINT . ( sentence )
+
+    (               shift and go to state 36
+
+
+state 21
+
+    (32) iF -> IF . ( condition ) { statements }
+    (33) iF -> IF . ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+
+    (               shift and go to state 37
+
+
+state 22
+
+    (34) whilE -> WHILE . ( condition ) { statements }
+
+    (               shift and go to state 38
+
+
+state 23
+
+    (21) for -> FOR . ( operation ; condition ; operation ) { statements }
+
+    (               shift and go to state 39
+
+
+state 24
+
+    (18) break -> BREAK . statements
+    (19) break -> BREAK .
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+  ! shift/reduce conflict for VARIABLE resolved as shift
+  ! shift/reduce conflict for SELF resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for BREAK resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for CLASS resolved as shift
+    $end            reduce using rule 19 (break -> BREAK .)
+    }               reduce using rule 19 (break -> BREAK .)
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+  ! VARIABLE        [ reduce using rule 19 (break -> BREAK .) ]
+  ! SELF            [ reduce using rule 19 (break -> BREAK .) ]
+  ! PRINT           [ reduce using rule 19 (break -> BREAK .) ]
+  ! IF              [ reduce using rule 19 (break -> BREAK .) ]
+  ! WHILE           [ reduce using rule 19 (break -> BREAK .) ]
+  ! FOR             [ reduce using rule 19 (break -> BREAK .) ]
+  ! BREAK           [ reduce using rule 19 (break -> BREAK .) ]
+  ! RETURN          [ reduce using rule 19 (break -> BREAK .) ]
+  ! DEF             [ reduce using rule 19 (break -> BREAK .) ]
+  ! CLASS           [ reduce using rule 19 (break -> BREAK .) ]
+
+    statements                     shift and go to state 40
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 25
+
+    (20) return -> RETURN .
+
+    VARIABLE        reduce using rule 20 (return -> RETURN .)
+    SELF            reduce using rule 20 (return -> RETURN .)
+    PRINT           reduce using rule 20 (return -> RETURN .)
+    IF              reduce using rule 20 (return -> RETURN .)
+    WHILE           reduce using rule 20 (return -> RETURN .)
+    FOR             reduce using rule 20 (return -> RETURN .)
+    BREAK           reduce using rule 20 (return -> RETURN .)
+    RETURN          reduce using rule 20 (return -> RETURN .)
+    DEF             reduce using rule 20 (return -> RETURN .)
+    CLASS           reduce using rule 20 (return -> RETURN .)
+    $end            reduce using rule 20 (return -> RETURN .)
+    }               reduce using rule 20 (return -> RETURN .)
+
+
+state 26
+
+    (61) function -> DEF . VARIABLE ( sentence ) { statements }
+    (62) function -> DEF . VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> DEF . VARIABLE ( SELF ) { statements }
+
+    VARIABLE        shift and go to state 41
+
+
+state 27
+
+    (65) class -> CLASS . VARIABLE { init statements }
+
+    VARIABLE        shift and go to state 42
+
+
+state 28
+
+    (2) statements -> statements statement .
+
+    VARIABLE        reduce using rule 2 (statements -> statements statement .)
+    SELF            reduce using rule 2 (statements -> statements statement .)
+    PRINT           reduce using rule 2 (statements -> statements statement .)
+    IF              reduce using rule 2 (statements -> statements statement .)
+    WHILE           reduce using rule 2 (statements -> statements statement .)
+    FOR             reduce using rule 2 (statements -> statements statement .)
+    BREAK           reduce using rule 2 (statements -> statements statement .)
+    RETURN          reduce using rule 2 (statements -> statements statement .)
+    DEF             reduce using rule 2 (statements -> statements statement .)
+    CLASS           reduce using rule 2 (statements -> statements statement .)
+    $end            reduce using rule 2 (statements -> statements statement .)
+    }               reduce using rule 2 (statements -> statements statement .)
+
+
+state 29
+
+    (35) assignment -> VARIABLE = . NUMBER
+    (36) assignment -> VARIABLE = . [ sentence ]
+    (41) operation -> VARIABLE = . expression
+    (67) runclass -> VARIABLE = . VARIABLE ( STR , NUMBER , NUMBER )
+    (44) expression -> . expression + term
+    (45) expression -> . expression - term
+    (46) expression -> . term
+    (47) expression -> . VARIABLE [ factor ]
+    (48) expression -> . LEN ( term )
+    (49) term -> . term * factor
+    (50) term -> . term / factor
+    (51) term -> . term / / factor
+    (52) term -> . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    NUMBER          shift and go to state 44
+    [               shift and go to state 45
+    VARIABLE        shift and go to state 43
+    LEN             shift and go to state 50
+    (               shift and go to state 47
+
+    expression                     shift and go to state 46
+    term                           shift and go to state 48
+    factor                         shift and go to state 49
+
+state 30
+
+    (38) modification -> VARIABLE [ . factor ] = VARIABLE [ factor ]
+    (39) modification -> VARIABLE [ . factor ] = VARIABLE
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 52
+
+state 31
+
+    (42) operation -> VARIABLE + . +
+
+    +               shift and go to state 54
+
+
+state 32
+
+    (43) operation -> VARIABLE - . -
+
+    -               shift and go to state 55
+
+
+state 33
+
+    (64) runfunction -> VARIABLE ( . sentence )
+    (57) sentence -> . word , sentence
+    (58) sentence -> . word
+    (59) word -> . NUMBER
+    (60) word -> . VARIABLE
+
+    NUMBER          shift and go to state 59
+    VARIABLE        shift and go to state 56
+
+    sentence                       shift and go to state 57
+    word                           shift and go to state 58
+
+state 34
+
+    (68) runclassfunction -> VARIABLE . . VARIABLE ( NUMBER )
+    (69) runclassfunction -> VARIABLE . . VARIABLE ( )
+
+    VARIABLE        shift and go to state 60
+
+
+state 35
+
+    (37) assignment -> SELF . . VARIABLE = VARIABLE
+    (40) modification -> SELF . . VARIABLE = SELF . VARIABLE + VARIABLE
+
+    VARIABLE        shift and go to state 61
+
+
+state 36
+
+    (56) print -> PRINT ( . sentence )
+    (57) sentence -> . word , sentence
+    (58) sentence -> . word
+    (59) word -> . NUMBER
+    (60) word -> . VARIABLE
+
+    NUMBER          shift and go to state 59
+    VARIABLE        shift and go to state 56
+
+    sentence                       shift and go to state 62
+    word                           shift and go to state 58
+
+state 37
+
+    (32) iF -> IF ( . condition ) { statements }
+    (33) iF -> IF ( . condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (22) condition -> . VARIABLE > VARIABLE
+    (23) condition -> . VARIABLE < VARIABLE
+    (24) condition -> . VARIABLE > NUMBER
+    (25) condition -> . VARIABLE < NUMBER
+    (26) condition -> . VARIABLE < = VARIABLE
+    (27) condition -> . VARIABLE > = VARIABLE
+    (28) condition -> . VARIABLE [ factor ] > VARIABLE
+    (29) condition -> . VARIABLE [ factor ] < VARIABLE
+    (30) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE
+    (31) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE
+
+    VARIABLE        shift and go to state 64
+
+    condition                      shift and go to state 63
+
+state 38
+
+    (34) whilE -> WHILE ( . condition ) { statements }
+    (22) condition -> . VARIABLE > VARIABLE
+    (23) condition -> . VARIABLE < VARIABLE
+    (24) condition -> . VARIABLE > NUMBER
+    (25) condition -> . VARIABLE < NUMBER
+    (26) condition -> . VARIABLE < = VARIABLE
+    (27) condition -> . VARIABLE > = VARIABLE
+    (28) condition -> . VARIABLE [ factor ] > VARIABLE
+    (29) condition -> . VARIABLE [ factor ] < VARIABLE
+    (30) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE
+    (31) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE
+
+    VARIABLE        shift and go to state 64
+
+    condition                      shift and go to state 65
+
+state 39
+
+    (21) for -> FOR ( . operation ; condition ; operation ) { statements }
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+
+    VARIABLE        shift and go to state 67
+
+    operation                      shift and go to state 66
+
+state 40
+
+    (18) break -> BREAK statements .
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+  ! shift/reduce conflict for VARIABLE resolved as shift
+  ! shift/reduce conflict for SELF resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for BREAK resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for CLASS resolved as shift
+    $end            reduce using rule 18 (break -> BREAK statements .)
+    }               reduce using rule 18 (break -> BREAK statements .)
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+  ! VARIABLE        [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! SELF            [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! PRINT           [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! IF              [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! WHILE           [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! FOR             [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! BREAK           [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! RETURN          [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! DEF             [ reduce using rule 18 (break -> BREAK statements .) ]
+  ! CLASS           [ reduce using rule 18 (break -> BREAK statements .) ]
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 41
+
+    (61) function -> DEF VARIABLE . ( sentence ) { statements }
+    (62) function -> DEF VARIABLE . ( SELF , sentence ) { statements }
+    (63) function -> DEF VARIABLE . ( SELF ) { statements }
+
+    (               shift and go to state 68
+
+
+state 42
+
+    (65) class -> CLASS VARIABLE . { init statements }
+
+    {               shift and go to state 69
+
+
+state 43
+
+    (67) runclass -> VARIABLE = VARIABLE . ( STR , NUMBER , NUMBER )
+    (47) expression -> VARIABLE . [ factor ]
+    (53) factor -> VARIABLE .
+
+    (               shift and go to state 70
+    [               shift and go to state 71
+    *               reduce using rule 53 (factor -> VARIABLE .)
+    /               reduce using rule 53 (factor -> VARIABLE .)
+    +               reduce using rule 53 (factor -> VARIABLE .)
+    -               reduce using rule 53 (factor -> VARIABLE .)
+    VARIABLE        reduce using rule 53 (factor -> VARIABLE .)
+    SELF            reduce using rule 53 (factor -> VARIABLE .)
+    PRINT           reduce using rule 53 (factor -> VARIABLE .)
+    IF              reduce using rule 53 (factor -> VARIABLE .)
+    WHILE           reduce using rule 53 (factor -> VARIABLE .)
+    FOR             reduce using rule 53 (factor -> VARIABLE .)
+    BREAK           reduce using rule 53 (factor -> VARIABLE .)
+    RETURN          reduce using rule 53 (factor -> VARIABLE .)
+    DEF             reduce using rule 53 (factor -> VARIABLE .)
+    CLASS           reduce using rule 53 (factor -> VARIABLE .)
+    $end            reduce using rule 53 (factor -> VARIABLE .)
+    }               reduce using rule 53 (factor -> VARIABLE .)
+
+
+state 44
+
+    (35) assignment -> VARIABLE = NUMBER .
+    (55) factor -> NUMBER .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for SELF resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for PRINT resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for IF resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for WHILE resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for FOR resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for BREAK resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for RETURN resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for DEF resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for CLASS resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for $end resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+  ! reduce/reduce conflict for } resolved using rule 35 (assignment -> VARIABLE = NUMBER .)
+    VARIABLE        reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    SELF            reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    PRINT           reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    IF              reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    WHILE           reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    FOR             reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    BREAK           reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    RETURN          reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    DEF             reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    CLASS           reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    $end            reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    }               reduce using rule 35 (assignment -> VARIABLE = NUMBER .)
+    *               reduce using rule 55 (factor -> NUMBER .)
+    /               reduce using rule 55 (factor -> NUMBER .)
+    +               reduce using rule 55 (factor -> NUMBER .)
+    -               reduce using rule 55 (factor -> NUMBER .)
+
+  ! VARIABLE        [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! SELF            [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! PRINT           [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! IF              [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! WHILE           [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! FOR             [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! BREAK           [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! RETURN          [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! DEF             [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! CLASS           [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! $end            [ reduce using rule 55 (factor -> NUMBER .) ]
+  ! }               [ reduce using rule 55 (factor -> NUMBER .) ]
+
+
+state 45
+
+    (36) assignment -> VARIABLE = [ . sentence ]
+    (57) sentence -> . word , sentence
+    (58) sentence -> . word
+    (59) word -> . NUMBER
+    (60) word -> . VARIABLE
+
+    NUMBER          shift and go to state 59
+    VARIABLE        shift and go to state 56
+
+    sentence                       shift and go to state 72
+    word                           shift and go to state 58
+
+state 46
+
+    (41) operation -> VARIABLE = expression .
+    (44) expression -> expression . + term
+    (45) expression -> expression . - term
+
+    VARIABLE        reduce using rule 41 (operation -> VARIABLE = expression .)
+    SELF            reduce using rule 41 (operation -> VARIABLE = expression .)
+    PRINT           reduce using rule 41 (operation -> VARIABLE = expression .)
+    IF              reduce using rule 41 (operation -> VARIABLE = expression .)
+    WHILE           reduce using rule 41 (operation -> VARIABLE = expression .)
+    FOR             reduce using rule 41 (operation -> VARIABLE = expression .)
+    BREAK           reduce using rule 41 (operation -> VARIABLE = expression .)
+    RETURN          reduce using rule 41 (operation -> VARIABLE = expression .)
+    DEF             reduce using rule 41 (operation -> VARIABLE = expression .)
+    CLASS           reduce using rule 41 (operation -> VARIABLE = expression .)
+    $end            reduce using rule 41 (operation -> VARIABLE = expression .)
+    }               reduce using rule 41 (operation -> VARIABLE = expression .)
+    ;               reduce using rule 41 (operation -> VARIABLE = expression .)
+    )               reduce using rule 41 (operation -> VARIABLE = expression .)
+    +               shift and go to state 73
+    -               shift and go to state 74
+
+
+state 47
+
+    (54) factor -> ( . expression )
+    (44) expression -> . expression + term
+    (45) expression -> . expression - term
+    (46) expression -> . term
+    (47) expression -> . VARIABLE [ factor ]
+    (48) expression -> . LEN ( term )
+    (49) term -> . term * factor
+    (50) term -> . term / factor
+    (51) term -> . term / / factor
+    (52) term -> . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 76
+    LEN             shift and go to state 50
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    expression                     shift and go to state 75
+    term                           shift and go to state 48
+    factor                         shift and go to state 49
+
+state 48
+
+    (46) expression -> term .
+    (49) term -> term . * factor
+    (50) term -> term . / factor
+    (51) term -> term . / / factor
+
+    +               reduce using rule 46 (expression -> term .)
+    -               reduce using rule 46 (expression -> term .)
+    VARIABLE        reduce using rule 46 (expression -> term .)
+    SELF            reduce using rule 46 (expression -> term .)
+    PRINT           reduce using rule 46 (expression -> term .)
+    IF              reduce using rule 46 (expression -> term .)
+    WHILE           reduce using rule 46 (expression -> term .)
+    FOR             reduce using rule 46 (expression -> term .)
+    BREAK           reduce using rule 46 (expression -> term .)
+    RETURN          reduce using rule 46 (expression -> term .)
+    DEF             reduce using rule 46 (expression -> term .)
+    CLASS           reduce using rule 46 (expression -> term .)
+    $end            reduce using rule 46 (expression -> term .)
+    }               reduce using rule 46 (expression -> term .)
+    )               reduce using rule 46 (expression -> term .)
+    ;               reduce using rule 46 (expression -> term .)
+    *               shift and go to state 77
+    /               shift and go to state 78
+
+
+state 49
+
+    (52) term -> factor .
+
+    *               reduce using rule 52 (term -> factor .)
+    /               reduce using rule 52 (term -> factor .)
+    +               reduce using rule 52 (term -> factor .)
+    -               reduce using rule 52 (term -> factor .)
+    VARIABLE        reduce using rule 52 (term -> factor .)
+    SELF            reduce using rule 52 (term -> factor .)
+    PRINT           reduce using rule 52 (term -> factor .)
+    IF              reduce using rule 52 (term -> factor .)
+    WHILE           reduce using rule 52 (term -> factor .)
+    FOR             reduce using rule 52 (term -> factor .)
+    BREAK           reduce using rule 52 (term -> factor .)
+    RETURN          reduce using rule 52 (term -> factor .)
+    DEF             reduce using rule 52 (term -> factor .)
+    CLASS           reduce using rule 52 (term -> factor .)
+    $end            reduce using rule 52 (term -> factor .)
+    }               reduce using rule 52 (term -> factor .)
+    )               reduce using rule 52 (term -> factor .)
+    ;               reduce using rule 52 (term -> factor .)
+
+
+state 50
+
+    (48) expression -> LEN . ( term )
+
+    (               shift and go to state 79
+
+
+state 51
+
+    (53) factor -> VARIABLE .
+
+    ]               reduce using rule 53 (factor -> VARIABLE .)
+    *               reduce using rule 53 (factor -> VARIABLE .)
+    /               reduce using rule 53 (factor -> VARIABLE .)
+    +               reduce using rule 53 (factor -> VARIABLE .)
+    -               reduce using rule 53 (factor -> VARIABLE .)
+    VARIABLE        reduce using rule 53 (factor -> VARIABLE .)
+    SELF            reduce using rule 53 (factor -> VARIABLE .)
+    PRINT           reduce using rule 53 (factor -> VARIABLE .)
+    IF              reduce using rule 53 (factor -> VARIABLE .)
+    WHILE           reduce using rule 53 (factor -> VARIABLE .)
+    FOR             reduce using rule 53 (factor -> VARIABLE .)
+    BREAK           reduce using rule 53 (factor -> VARIABLE .)
+    RETURN          reduce using rule 53 (factor -> VARIABLE .)
+    DEF             reduce using rule 53 (factor -> VARIABLE .)
+    CLASS           reduce using rule 53 (factor -> VARIABLE .)
+    $end            reduce using rule 53 (factor -> VARIABLE .)
+    }               reduce using rule 53 (factor -> VARIABLE .)
+    )               reduce using rule 53 (factor -> VARIABLE .)
+    ;               reduce using rule 53 (factor -> VARIABLE .)
+
+
+state 52
+
+    (38) modification -> VARIABLE [ factor . ] = VARIABLE [ factor ]
+    (39) modification -> VARIABLE [ factor . ] = VARIABLE
+
+    ]               shift and go to state 80
+
+
+state 53
+
+    (55) factor -> NUMBER .
+
+    ]               reduce using rule 55 (factor -> NUMBER .)
+    *               reduce using rule 55 (factor -> NUMBER .)
+    /               reduce using rule 55 (factor -> NUMBER .)
+    )               reduce using rule 55 (factor -> NUMBER .)
+    +               reduce using rule 55 (factor -> NUMBER .)
+    -               reduce using rule 55 (factor -> NUMBER .)
+    VARIABLE        reduce using rule 55 (factor -> NUMBER .)
+    SELF            reduce using rule 55 (factor -> NUMBER .)
+    PRINT           reduce using rule 55 (factor -> NUMBER .)
+    IF              reduce using rule 55 (factor -> NUMBER .)
+    WHILE           reduce using rule 55 (factor -> NUMBER .)
+    FOR             reduce using rule 55 (factor -> NUMBER .)
+    BREAK           reduce using rule 55 (factor -> NUMBER .)
+    RETURN          reduce using rule 55 (factor -> NUMBER .)
+    DEF             reduce using rule 55 (factor -> NUMBER .)
+    CLASS           reduce using rule 55 (factor -> NUMBER .)
+    $end            reduce using rule 55 (factor -> NUMBER .)
+    }               reduce using rule 55 (factor -> NUMBER .)
+    ;               reduce using rule 55 (factor -> NUMBER .)
+
+
+state 54
+
+    (42) operation -> VARIABLE + + .
+
+    VARIABLE        reduce using rule 42 (operation -> VARIABLE + + .)
+    SELF            reduce using rule 42 (operation -> VARIABLE + + .)
+    PRINT           reduce using rule 42 (operation -> VARIABLE + + .)
+    IF              reduce using rule 42 (operation -> VARIABLE + + .)
+    WHILE           reduce using rule 42 (operation -> VARIABLE + + .)
+    FOR             reduce using rule 42 (operation -> VARIABLE + + .)
+    BREAK           reduce using rule 42 (operation -> VARIABLE + + .)
+    RETURN          reduce using rule 42 (operation -> VARIABLE + + .)
+    DEF             reduce using rule 42 (operation -> VARIABLE + + .)
+    CLASS           reduce using rule 42 (operation -> VARIABLE + + .)
+    $end            reduce using rule 42 (operation -> VARIABLE + + .)
+    }               reduce using rule 42 (operation -> VARIABLE + + .)
+    ;               reduce using rule 42 (operation -> VARIABLE + + .)
+    )               reduce using rule 42 (operation -> VARIABLE + + .)
+
+
+state 55
+
+    (43) operation -> VARIABLE - - .
+
+    VARIABLE        reduce using rule 43 (operation -> VARIABLE - - .)
+    SELF            reduce using rule 43 (operation -> VARIABLE - - .)
+    PRINT           reduce using rule 43 (operation -> VARIABLE - - .)
+    IF              reduce using rule 43 (operation -> VARIABLE - - .)
+    WHILE           reduce using rule 43 (operation -> VARIABLE - - .)
+    FOR             reduce using rule 43 (operation -> VARIABLE - - .)
+    BREAK           reduce using rule 43 (operation -> VARIABLE - - .)
+    RETURN          reduce using rule 43 (operation -> VARIABLE - - .)
+    DEF             reduce using rule 43 (operation -> VARIABLE - - .)
+    CLASS           reduce using rule 43 (operation -> VARIABLE - - .)
+    $end            reduce using rule 43 (operation -> VARIABLE - - .)
+    }               reduce using rule 43 (operation -> VARIABLE - - .)
+    ;               reduce using rule 43 (operation -> VARIABLE - - .)
+    )               reduce using rule 43 (operation -> VARIABLE - - .)
+
+
+state 56
+
+    (60) word -> VARIABLE .
+
+    ,               reduce using rule 60 (word -> VARIABLE .)
+    )               reduce using rule 60 (word -> VARIABLE .)
+    ]               reduce using rule 60 (word -> VARIABLE .)
+
+
+state 57
+
+    (64) runfunction -> VARIABLE ( sentence . )
+
+    )               shift and go to state 81
+
+
+state 58
+
+    (57) sentence -> word . , sentence
+    (58) sentence -> word .
+
+    ,               shift and go to state 82
+    )               reduce using rule 58 (sentence -> word .)
+    ]               reduce using rule 58 (sentence -> word .)
+
+
+state 59
+
+    (59) word -> NUMBER .
+
+    ,               reduce using rule 59 (word -> NUMBER .)
+    )               reduce using rule 59 (word -> NUMBER .)
+    ]               reduce using rule 59 (word -> NUMBER .)
+
+
+state 60
+
+    (68) runclassfunction -> VARIABLE . VARIABLE . ( NUMBER )
+    (69) runclassfunction -> VARIABLE . VARIABLE . ( )
+
+    (               shift and go to state 83
+
+
+state 61
+
+    (37) assignment -> SELF . VARIABLE . = VARIABLE
+    (40) modification -> SELF . VARIABLE . = SELF . VARIABLE + VARIABLE
+
+    =               shift and go to state 84
+
+
+state 62
+
+    (56) print -> PRINT ( sentence . )
+
+    )               shift and go to state 85
+
+
+state 63
+
+    (32) iF -> IF ( condition . ) { statements }
+    (33) iF -> IF ( condition . ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+
+    )               shift and go to state 86
+
+
+state 64
+
+    (22) condition -> VARIABLE . > VARIABLE
+    (23) condition -> VARIABLE . < VARIABLE
+    (24) condition -> VARIABLE . > NUMBER
+    (25) condition -> VARIABLE . < NUMBER
+    (26) condition -> VARIABLE . < = VARIABLE
+    (27) condition -> VARIABLE . > = VARIABLE
+    (28) condition -> VARIABLE . [ factor ] > VARIABLE
+    (29) condition -> VARIABLE . [ factor ] < VARIABLE
+    (30) condition -> VARIABLE . < VARIABLE AND VARIABLE [ factor ] > VARIABLE
+    (31) condition -> VARIABLE . < VARIABLE AND VARIABLE [ factor ] < = VARIABLE
+
+    >               shift and go to state 87
+    <               shift and go to state 88
+    [               shift and go to state 89
+
+
+state 65
+
+    (34) whilE -> WHILE ( condition . ) { statements }
+
+    )               shift and go to state 90
+
+
+state 66
+
+    (21) for -> FOR ( operation . ; condition ; operation ) { statements }
+
+    ;               shift and go to state 91
+
+
+state 67
+
+    (41) operation -> VARIABLE . = expression
+    (42) operation -> VARIABLE . + +
+    (43) operation -> VARIABLE . - -
+
+    =               shift and go to state 92
+    +               shift and go to state 31
+    -               shift and go to state 32
+
+
+state 68
+
+    (61) function -> DEF VARIABLE ( . sentence ) { statements }
+    (62) function -> DEF VARIABLE ( . SELF , sentence ) { statements }
+    (63) function -> DEF VARIABLE ( . SELF ) { statements }
+    (57) sentence -> . word , sentence
+    (58) sentence -> . word
+    (59) word -> . NUMBER
+    (60) word -> . VARIABLE
+
+    SELF            shift and go to state 94
+    NUMBER          shift and go to state 59
+    VARIABLE        shift and go to state 56
+
+    sentence                       shift and go to state 93
+    word                           shift and go to state 58
+
+state 69
+
+    (65) class -> CLASS VARIABLE { . init statements }
+    (66) init -> . DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements }
+
+    DEF             shift and go to state 96
+
+    init                           shift and go to state 95
+
+state 70
+
+    (67) runclass -> VARIABLE = VARIABLE ( . STR , NUMBER , NUMBER )
+
+    STR             shift and go to state 97
+
+
+state 71
+
+    (47) expression -> VARIABLE [ . factor ]
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 98
+
+state 72
+
+    (36) assignment -> VARIABLE = [ sentence . ]
+
+    ]               shift and go to state 99
+
+
+state 73
+
+    (44) expression -> expression + . term
+    (49) term -> . term * factor
+    (50) term -> . term / factor
+    (51) term -> . term / / factor
+    (52) term -> . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    term                           shift and go to state 100
+    factor                         shift and go to state 49
+
+state 74
+
+    (45) expression -> expression - . term
+    (49) term -> . term * factor
+    (50) term -> . term / factor
+    (51) term -> . term / / factor
+    (52) term -> . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    term                           shift and go to state 101
+    factor                         shift and go to state 49
+
+state 75
+
+    (54) factor -> ( expression . )
+    (44) expression -> expression . + term
+    (45) expression -> expression . - term
+
+    )               shift and go to state 102
+    +               shift and go to state 73
+    -               shift and go to state 74
+
+
+state 76
+
+    (47) expression -> VARIABLE . [ factor ]
+    (53) factor -> VARIABLE .
+
+    [               shift and go to state 71
+    *               reduce using rule 53 (factor -> VARIABLE .)
+    /               reduce using rule 53 (factor -> VARIABLE .)
+    )               reduce using rule 53 (factor -> VARIABLE .)
+    +               reduce using rule 53 (factor -> VARIABLE .)
+    -               reduce using rule 53 (factor -> VARIABLE .)
+    ;               reduce using rule 53 (factor -> VARIABLE .)
+
+
+state 77
+
+    (49) term -> term * . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 103
+
+state 78
+
+    (50) term -> term / . factor
+    (51) term -> term / . / factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    /               shift and go to state 104
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 105
+
+state 79
+
+    (48) expression -> LEN ( . term )
+    (49) term -> . term * factor
+    (50) term -> . term / factor
+    (51) term -> . term / / factor
+    (52) term -> . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    term                           shift and go to state 106
+    factor                         shift and go to state 49
+
+state 80
+
+    (38) modification -> VARIABLE [ factor ] . = VARIABLE [ factor ]
+    (39) modification -> VARIABLE [ factor ] . = VARIABLE
+
+    =               shift and go to state 107
+
+
+state 81
+
+    (64) runfunction -> VARIABLE ( sentence ) .
+
+    VARIABLE        reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    SELF            reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    PRINT           reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    IF              reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    WHILE           reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    FOR             reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    BREAK           reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    RETURN          reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    DEF             reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    CLASS           reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    $end            reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+    }               reduce using rule 64 (runfunction -> VARIABLE ( sentence ) .)
+
+
+state 82
+
+    (57) sentence -> word , . sentence
+    (57) sentence -> . word , sentence
+    (58) sentence -> . word
+    (59) word -> . NUMBER
+    (60) word -> . VARIABLE
+
+    NUMBER          shift and go to state 59
+    VARIABLE        shift and go to state 56
+
+    word                           shift and go to state 58
+    sentence                       shift and go to state 108
+
+state 83
+
+    (68) runclassfunction -> VARIABLE . VARIABLE ( . NUMBER )
+    (69) runclassfunction -> VARIABLE . VARIABLE ( . )
+
+    NUMBER          shift and go to state 109
+    )               shift and go to state 110
+
+
+state 84
+
+    (37) assignment -> SELF . VARIABLE = . VARIABLE
+    (40) modification -> SELF . VARIABLE = . SELF . VARIABLE + VARIABLE
+
+    VARIABLE        shift and go to state 112
+    SELF            shift and go to state 111
+
+
+state 85
+
+    (56) print -> PRINT ( sentence ) .
+
+    VARIABLE        reduce using rule 56 (print -> PRINT ( sentence ) .)
+    SELF            reduce using rule 56 (print -> PRINT ( sentence ) .)
+    PRINT           reduce using rule 56 (print -> PRINT ( sentence ) .)
+    IF              reduce using rule 56 (print -> PRINT ( sentence ) .)
+    WHILE           reduce using rule 56 (print -> PRINT ( sentence ) .)
+    FOR             reduce using rule 56 (print -> PRINT ( sentence ) .)
+    BREAK           reduce using rule 56 (print -> PRINT ( sentence ) .)
+    RETURN          reduce using rule 56 (print -> PRINT ( sentence ) .)
+    DEF             reduce using rule 56 (print -> PRINT ( sentence ) .)
+    CLASS           reduce using rule 56 (print -> PRINT ( sentence ) .)
+    $end            reduce using rule 56 (print -> PRINT ( sentence ) .)
+    }               reduce using rule 56 (print -> PRINT ( sentence ) .)
+
+
+state 86
+
+    (32) iF -> IF ( condition ) . { statements }
+    (33) iF -> IF ( condition ) . { statements } ELIF ( condition ) { statements } ELSE { statements }
+
+    {               shift and go to state 113
+
+
+state 87
+
+    (22) condition -> VARIABLE > . VARIABLE
+    (24) condition -> VARIABLE > . NUMBER
+    (27) condition -> VARIABLE > . = VARIABLE
+
+    VARIABLE        shift and go to state 114
+    NUMBER          shift and go to state 115
+    =               shift and go to state 116
+
+
+state 88
+
+    (23) condition -> VARIABLE < . VARIABLE
+    (25) condition -> VARIABLE < . NUMBER
+    (26) condition -> VARIABLE < . = VARIABLE
+    (30) condition -> VARIABLE < . VARIABLE AND VARIABLE [ factor ] > VARIABLE
+    (31) condition -> VARIABLE < . VARIABLE AND VARIABLE [ factor ] < = VARIABLE
+
+    VARIABLE        shift and go to state 117
+    NUMBER          shift and go to state 118
+    =               shift and go to state 119
+
+
+state 89
+
+    (28) condition -> VARIABLE [ . factor ] > VARIABLE
+    (29) condition -> VARIABLE [ . factor ] < VARIABLE
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 120
+
+state 90
+
+    (34) whilE -> WHILE ( condition ) . { statements }
+
+    {               shift and go to state 121
+
+
+state 91
+
+    (21) for -> FOR ( operation ; . condition ; operation ) { statements }
+    (22) condition -> . VARIABLE > VARIABLE
+    (23) condition -> . VARIABLE < VARIABLE
+    (24) condition -> . VARIABLE > NUMBER
+    (25) condition -> . VARIABLE < NUMBER
+    (26) condition -> . VARIABLE < = VARIABLE
+    (27) condition -> . VARIABLE > = VARIABLE
+    (28) condition -> . VARIABLE [ factor ] > VARIABLE
+    (29) condition -> . VARIABLE [ factor ] < VARIABLE
+    (30) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE
+    (31) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE
+
+    VARIABLE        shift and go to state 64
+
+    condition                      shift and go to state 122
+
+state 92
+
+    (41) operation -> VARIABLE = . expression
+    (44) expression -> . expression + term
+    (45) expression -> . expression - term
+    (46) expression -> . term
+    (47) expression -> . VARIABLE [ factor ]
+    (48) expression -> . LEN ( term )
+    (49) term -> . term * factor
+    (50) term -> . term / factor
+    (51) term -> . term / / factor
+    (52) term -> . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 76
+    LEN             shift and go to state 50
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    expression                     shift and go to state 46
+    term                           shift and go to state 48
+    factor                         shift and go to state 49
+
+state 93
+
+    (61) function -> DEF VARIABLE ( sentence . ) { statements }
+
+    )               shift and go to state 123
+
+
+state 94
+
+    (62) function -> DEF VARIABLE ( SELF . , sentence ) { statements }
+    (63) function -> DEF VARIABLE ( SELF . ) { statements }
+
+    ,               shift and go to state 124
+    )               shift and go to state 125
+
+
+state 95
+
+    (65) class -> CLASS VARIABLE { init . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 126
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 96
+
+    (66) init -> DEF . INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements }
+
+    INIT            shift and go to state 127
+
+
+state 97
+
+    (67) runclass -> VARIABLE = VARIABLE ( STR . , NUMBER , NUMBER )
+
+    ,               shift and go to state 128
+
+
+state 98
+
+    (47) expression -> VARIABLE [ factor . ]
+
+    ]               shift and go to state 129
+
+
+state 99
+
+    (36) assignment -> VARIABLE = [ sentence ] .
+
+    VARIABLE        reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    SELF            reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    PRINT           reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    IF              reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    WHILE           reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    FOR             reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    BREAK           reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    RETURN          reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    DEF             reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    CLASS           reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    $end            reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+    }               reduce using rule 36 (assignment -> VARIABLE = [ sentence ] .)
+
+
+state 100
+
+    (44) expression -> expression + term .
+    (49) term -> term . * factor
+    (50) term -> term . / factor
+    (51) term -> term . / / factor
+
+    +               reduce using rule 44 (expression -> expression + term .)
+    -               reduce using rule 44 (expression -> expression + term .)
+    VARIABLE        reduce using rule 44 (expression -> expression + term .)
+    SELF            reduce using rule 44 (expression -> expression + term .)
+    PRINT           reduce using rule 44 (expression -> expression + term .)
+    IF              reduce using rule 44 (expression -> expression + term .)
+    WHILE           reduce using rule 44 (expression -> expression + term .)
+    FOR             reduce using rule 44 (expression -> expression + term .)
+    BREAK           reduce using rule 44 (expression -> expression + term .)
+    RETURN          reduce using rule 44 (expression -> expression + term .)
+    DEF             reduce using rule 44 (expression -> expression + term .)
+    CLASS           reduce using rule 44 (expression -> expression + term .)
+    $end            reduce using rule 44 (expression -> expression + term .)
+    }               reduce using rule 44 (expression -> expression + term .)
+    )               reduce using rule 44 (expression -> expression + term .)
+    ;               reduce using rule 44 (expression -> expression + term .)
+    *               shift and go to state 77
+    /               shift and go to state 78
+
+
+state 101
+
+    (45) expression -> expression - term .
+    (49) term -> term . * factor
+    (50) term -> term . / factor
+    (51) term -> term . / / factor
+
+    +               reduce using rule 45 (expression -> expression - term .)
+    -               reduce using rule 45 (expression -> expression - term .)
+    VARIABLE        reduce using rule 45 (expression -> expression - term .)
+    SELF            reduce using rule 45 (expression -> expression - term .)
+    PRINT           reduce using rule 45 (expression -> expression - term .)
+    IF              reduce using rule 45 (expression -> expression - term .)
+    WHILE           reduce using rule 45 (expression -> expression - term .)
+    FOR             reduce using rule 45 (expression -> expression - term .)
+    BREAK           reduce using rule 45 (expression -> expression - term .)
+    RETURN          reduce using rule 45 (expression -> expression - term .)
+    DEF             reduce using rule 45 (expression -> expression - term .)
+    CLASS           reduce using rule 45 (expression -> expression - term .)
+    $end            reduce using rule 45 (expression -> expression - term .)
+    }               reduce using rule 45 (expression -> expression - term .)
+    )               reduce using rule 45 (expression -> expression - term .)
+    ;               reduce using rule 45 (expression -> expression - term .)
+    *               shift and go to state 77
+    /               shift and go to state 78
+
+
+state 102
+
+    (54) factor -> ( expression ) .
+
+    *               reduce using rule 54 (factor -> ( expression ) .)
+    /               reduce using rule 54 (factor -> ( expression ) .)
+    +               reduce using rule 54 (factor -> ( expression ) .)
+    -               reduce using rule 54 (factor -> ( expression ) .)
+    VARIABLE        reduce using rule 54 (factor -> ( expression ) .)
+    SELF            reduce using rule 54 (factor -> ( expression ) .)
+    PRINT           reduce using rule 54 (factor -> ( expression ) .)
+    IF              reduce using rule 54 (factor -> ( expression ) .)
+    WHILE           reduce using rule 54 (factor -> ( expression ) .)
+    FOR             reduce using rule 54 (factor -> ( expression ) .)
+    BREAK           reduce using rule 54 (factor -> ( expression ) .)
+    RETURN          reduce using rule 54 (factor -> ( expression ) .)
+    DEF             reduce using rule 54 (factor -> ( expression ) .)
+    CLASS           reduce using rule 54 (factor -> ( expression ) .)
+    $end            reduce using rule 54 (factor -> ( expression ) .)
+    }               reduce using rule 54 (factor -> ( expression ) .)
+    ]               reduce using rule 54 (factor -> ( expression ) .)
+    )               reduce using rule 54 (factor -> ( expression ) .)
+    ;               reduce using rule 54 (factor -> ( expression ) .)
+
+
+state 103
+
+    (49) term -> term * factor .
+
+    *               reduce using rule 49 (term -> term * factor .)
+    /               reduce using rule 49 (term -> term * factor .)
+    +               reduce using rule 49 (term -> term * factor .)
+    -               reduce using rule 49 (term -> term * factor .)
+    VARIABLE        reduce using rule 49 (term -> term * factor .)
+    SELF            reduce using rule 49 (term -> term * factor .)
+    PRINT           reduce using rule 49 (term -> term * factor .)
+    IF              reduce using rule 49 (term -> term * factor .)
+    WHILE           reduce using rule 49 (term -> term * factor .)
+    FOR             reduce using rule 49 (term -> term * factor .)
+    BREAK           reduce using rule 49 (term -> term * factor .)
+    RETURN          reduce using rule 49 (term -> term * factor .)
+    DEF             reduce using rule 49 (term -> term * factor .)
+    CLASS           reduce using rule 49 (term -> term * factor .)
+    $end            reduce using rule 49 (term -> term * factor .)
+    }               reduce using rule 49 (term -> term * factor .)
+    )               reduce using rule 49 (term -> term * factor .)
+    ;               reduce using rule 49 (term -> term * factor .)
+
+
+state 104
+
+    (51) term -> term / / . factor
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 130
+
+state 105
+
+    (50) term -> term / factor .
+
+    *               reduce using rule 50 (term -> term / factor .)
+    /               reduce using rule 50 (term -> term / factor .)
+    +               reduce using rule 50 (term -> term / factor .)
+    -               reduce using rule 50 (term -> term / factor .)
+    VARIABLE        reduce using rule 50 (term -> term / factor .)
+    SELF            reduce using rule 50 (term -> term / factor .)
+    PRINT           reduce using rule 50 (term -> term / factor .)
+    IF              reduce using rule 50 (term -> term / factor .)
+    WHILE           reduce using rule 50 (term -> term / factor .)
+    FOR             reduce using rule 50 (term -> term / factor .)
+    BREAK           reduce using rule 50 (term -> term / factor .)
+    RETURN          reduce using rule 50 (term -> term / factor .)
+    DEF             reduce using rule 50 (term -> term / factor .)
+    CLASS           reduce using rule 50 (term -> term / factor .)
+    $end            reduce using rule 50 (term -> term / factor .)
+    }               reduce using rule 50 (term -> term / factor .)
+    )               reduce using rule 50 (term -> term / factor .)
+    ;               reduce using rule 50 (term -> term / factor .)
+
+
+state 106
+
+    (48) expression -> LEN ( term . )
+    (49) term -> term . * factor
+    (50) term -> term . / factor
+    (51) term -> term . / / factor
+
+    )               shift and go to state 131
+    *               shift and go to state 77
+    /               shift and go to state 78
+
+
+state 107
+
+    (38) modification -> VARIABLE [ factor ] = . VARIABLE [ factor ]
+    (39) modification -> VARIABLE [ factor ] = . VARIABLE
+
+    VARIABLE        shift and go to state 132
+
+
+state 108
+
+    (57) sentence -> word , sentence .
+
+    )               reduce using rule 57 (sentence -> word , sentence .)
+    ]               reduce using rule 57 (sentence -> word , sentence .)
+
+
+state 109
+
+    (68) runclassfunction -> VARIABLE . VARIABLE ( NUMBER . )
+
+    )               shift and go to state 133
+
+
+state 110
+
+    (69) runclassfunction -> VARIABLE . VARIABLE ( ) .
+
+    VARIABLE        reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    SELF            reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    PRINT           reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    IF              reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    WHILE           reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    FOR             reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    BREAK           reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    RETURN          reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    DEF             reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    CLASS           reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    $end            reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+    }               reduce using rule 69 (runclassfunction -> VARIABLE . VARIABLE ( ) .)
+
+
+state 111
+
+    (40) modification -> SELF . VARIABLE = SELF . . VARIABLE + VARIABLE
+
+    .               shift and go to state 134
+
+
+state 112
+
+    (37) assignment -> SELF . VARIABLE = VARIABLE .
+
+    VARIABLE        reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    SELF            reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    PRINT           reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    IF              reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    WHILE           reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    FOR             reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    BREAK           reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    RETURN          reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    DEF             reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    CLASS           reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    $end            reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+    }               reduce using rule 37 (assignment -> SELF . VARIABLE = VARIABLE .)
+
+
+state 113
+
+    (32) iF -> IF ( condition ) { . statements }
+    (33) iF -> IF ( condition ) { . statements } ELIF ( condition ) { statements } ELSE { statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 135
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 114
+
+    (22) condition -> VARIABLE > VARIABLE .
+
+    )               reduce using rule 22 (condition -> VARIABLE > VARIABLE .)
+    ;               reduce using rule 22 (condition -> VARIABLE > VARIABLE .)
+
+
+state 115
+
+    (24) condition -> VARIABLE > NUMBER .
+
+    )               reduce using rule 24 (condition -> VARIABLE > NUMBER .)
+    ;               reduce using rule 24 (condition -> VARIABLE > NUMBER .)
+
+
+state 116
+
+    (27) condition -> VARIABLE > = . VARIABLE
+
+    VARIABLE        shift and go to state 136
+
+
+state 117
+
+    (23) condition -> VARIABLE < VARIABLE .
+    (30) condition -> VARIABLE < VARIABLE . AND VARIABLE [ factor ] > VARIABLE
+    (31) condition -> VARIABLE < VARIABLE . AND VARIABLE [ factor ] < = VARIABLE
+
+    )               reduce using rule 23 (condition -> VARIABLE < VARIABLE .)
+    ;               reduce using rule 23 (condition -> VARIABLE < VARIABLE .)
+    AND             shift and go to state 137
+
+
+state 118
+
+    (25) condition -> VARIABLE < NUMBER .
+
+    )               reduce using rule 25 (condition -> VARIABLE < NUMBER .)
+    ;               reduce using rule 25 (condition -> VARIABLE < NUMBER .)
+
+
+state 119
+
+    (26) condition -> VARIABLE < = . VARIABLE
+
+    VARIABLE        shift and go to state 138
+
+
+state 120
+
+    (28) condition -> VARIABLE [ factor . ] > VARIABLE
+    (29) condition -> VARIABLE [ factor . ] < VARIABLE
+
+    ]               shift and go to state 139
+
+
+state 121
+
+    (34) whilE -> WHILE ( condition ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 140
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 122
+
+    (21) for -> FOR ( operation ; condition . ; operation ) { statements }
+
+    ;               shift and go to state 141
+
+
+state 123
+
+    (61) function -> DEF VARIABLE ( sentence ) . { statements }
+
+    {               shift and go to state 142
+
+
+state 124
+
+    (62) function -> DEF VARIABLE ( SELF , . sentence ) { statements }
+    (57) sentence -> . word , sentence
+    (58) sentence -> . word
+    (59) word -> . NUMBER
+    (60) word -> . VARIABLE
+
+    NUMBER          shift and go to state 59
+    VARIABLE        shift and go to state 56
+
+    sentence                       shift and go to state 143
+    word                           shift and go to state 58
+
+state 125
+
+    (63) function -> DEF VARIABLE ( SELF ) . { statements }
+
+    {               shift and go to state 144
+
+
+state 126
+
+    (65) class -> CLASS VARIABLE { init statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 145
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 127
+
+    (66) init -> DEF INIT . ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements }
+
+    (               shift and go to state 146
+
+
+state 128
+
+    (67) runclass -> VARIABLE = VARIABLE ( STR , . NUMBER , NUMBER )
+
+    NUMBER          shift and go to state 147
+
+
+state 129
+
+    (47) expression -> VARIABLE [ factor ] .
+
+    +               reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    -               reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    VARIABLE        reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    SELF            reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    PRINT           reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    IF              reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    WHILE           reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    FOR             reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    BREAK           reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    RETURN          reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    DEF             reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    CLASS           reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    $end            reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    }               reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    )               reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+    ;               reduce using rule 47 (expression -> VARIABLE [ factor ] .)
+
+
+state 130
+
+    (51) term -> term / / factor .
+
+    *               reduce using rule 51 (term -> term / / factor .)
+    /               reduce using rule 51 (term -> term / / factor .)
+    +               reduce using rule 51 (term -> term / / factor .)
+    -               reduce using rule 51 (term -> term / / factor .)
+    VARIABLE        reduce using rule 51 (term -> term / / factor .)
+    SELF            reduce using rule 51 (term -> term / / factor .)
+    PRINT           reduce using rule 51 (term -> term / / factor .)
+    IF              reduce using rule 51 (term -> term / / factor .)
+    WHILE           reduce using rule 51 (term -> term / / factor .)
+    FOR             reduce using rule 51 (term -> term / / factor .)
+    BREAK           reduce using rule 51 (term -> term / / factor .)
+    RETURN          reduce using rule 51 (term -> term / / factor .)
+    DEF             reduce using rule 51 (term -> term / / factor .)
+    CLASS           reduce using rule 51 (term -> term / / factor .)
+    $end            reduce using rule 51 (term -> term / / factor .)
+    }               reduce using rule 51 (term -> term / / factor .)
+    )               reduce using rule 51 (term -> term / / factor .)
+    ;               reduce using rule 51 (term -> term / / factor .)
+
+
+state 131
+
+    (48) expression -> LEN ( term ) .
+
+    +               reduce using rule 48 (expression -> LEN ( term ) .)
+    -               reduce using rule 48 (expression -> LEN ( term ) .)
+    VARIABLE        reduce using rule 48 (expression -> LEN ( term ) .)
+    SELF            reduce using rule 48 (expression -> LEN ( term ) .)
+    PRINT           reduce using rule 48 (expression -> LEN ( term ) .)
+    IF              reduce using rule 48 (expression -> LEN ( term ) .)
+    WHILE           reduce using rule 48 (expression -> LEN ( term ) .)
+    FOR             reduce using rule 48 (expression -> LEN ( term ) .)
+    BREAK           reduce using rule 48 (expression -> LEN ( term ) .)
+    RETURN          reduce using rule 48 (expression -> LEN ( term ) .)
+    DEF             reduce using rule 48 (expression -> LEN ( term ) .)
+    CLASS           reduce using rule 48 (expression -> LEN ( term ) .)
+    $end            reduce using rule 48 (expression -> LEN ( term ) .)
+    }               reduce using rule 48 (expression -> LEN ( term ) .)
+    )               reduce using rule 48 (expression -> LEN ( term ) .)
+    ;               reduce using rule 48 (expression -> LEN ( term ) .)
+
+
+state 132
+
+    (38) modification -> VARIABLE [ factor ] = VARIABLE . [ factor ]
+    (39) modification -> VARIABLE [ factor ] = VARIABLE .
+
+    [               shift and go to state 148
+    VARIABLE        reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    SELF            reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    PRINT           reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    IF              reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    WHILE           reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    FOR             reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    BREAK           reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    RETURN          reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    DEF             reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    CLASS           reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    $end            reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+    }               reduce using rule 39 (modification -> VARIABLE [ factor ] = VARIABLE .)
+
+
+state 133
+
+    (68) runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .
+
+    VARIABLE        reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    SELF            reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    PRINT           reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    IF              reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    WHILE           reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    FOR             reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    BREAK           reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    RETURN          reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    DEF             reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    CLASS           reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    $end            reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+    }               reduce using rule 68 (runclassfunction -> VARIABLE . VARIABLE ( NUMBER ) .)
+
+
+state 134
+
+    (40) modification -> SELF . VARIABLE = SELF . . VARIABLE + VARIABLE
+
+    VARIABLE        shift and go to state 149
+
+
+state 135
+
+    (32) iF -> IF ( condition ) { statements . }
+    (33) iF -> IF ( condition ) { statements . } ELIF ( condition ) { statements } ELSE { statements }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 150
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 136
+
+    (27) condition -> VARIABLE > = VARIABLE .
+
+    )               reduce using rule 27 (condition -> VARIABLE > = VARIABLE .)
+    ;               reduce using rule 27 (condition -> VARIABLE > = VARIABLE .)
+
+
+state 137
+
+    (30) condition -> VARIABLE < VARIABLE AND . VARIABLE [ factor ] > VARIABLE
+    (31) condition -> VARIABLE < VARIABLE AND . VARIABLE [ factor ] < = VARIABLE
+
+    VARIABLE        shift and go to state 151
+
+
+state 138
+
+    (26) condition -> VARIABLE < = VARIABLE .
+
+    )               reduce using rule 26 (condition -> VARIABLE < = VARIABLE .)
+    ;               reduce using rule 26 (condition -> VARIABLE < = VARIABLE .)
+
+
+state 139
+
+    (28) condition -> VARIABLE [ factor ] . > VARIABLE
+    (29) condition -> VARIABLE [ factor ] . < VARIABLE
+
+    >               shift and go to state 152
+    <               shift and go to state 153
+
+
+state 140
+
+    (34) whilE -> WHILE ( condition ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 154
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 141
+
+    (21) for -> FOR ( operation ; condition ; . operation ) { statements }
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+
+    VARIABLE        shift and go to state 67
+
+    operation                      shift and go to state 155
+
+state 142
+
+    (61) function -> DEF VARIABLE ( sentence ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 156
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 143
+
+    (62) function -> DEF VARIABLE ( SELF , sentence . ) { statements }
+
+    )               shift and go to state 157
+
+
+state 144
+
+    (63) function -> DEF VARIABLE ( SELF ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 158
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 145
+
+    (65) class -> CLASS VARIABLE { init statements } .
+
+    VARIABLE        reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    SELF            reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    PRINT           reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    IF              reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    WHILE           reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    FOR             reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    BREAK           reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    RETURN          reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    DEF             reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    CLASS           reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    $end            reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+    }               reduce using rule 65 (class -> CLASS VARIABLE { init statements } .)
+
+
+state 146
+
+    (66) init -> DEF INIT ( . SELF , VARIABLE , VARIABLE , VARIABLE ) { statements }
+
+    SELF            shift and go to state 159
+
+
+state 147
+
+    (67) runclass -> VARIABLE = VARIABLE ( STR , NUMBER . , NUMBER )
+
+    ,               shift and go to state 160
+
+
+state 148
+
+    (38) modification -> VARIABLE [ factor ] = VARIABLE [ . factor ]
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 161
+
+state 149
+
+    (40) modification -> SELF . VARIABLE = SELF . VARIABLE . + VARIABLE
+
+    +               shift and go to state 162
+
+
+state 150
+
+    (32) iF -> IF ( condition ) { statements } .
+    (33) iF -> IF ( condition ) { statements } . ELIF ( condition ) { statements } ELSE { statements }
+
+    VARIABLE        reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    SELF            reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    PRINT           reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    IF              reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    WHILE           reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    FOR             reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    BREAK           reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    RETURN          reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    DEF             reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    CLASS           reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    $end            reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    }               reduce using rule 32 (iF -> IF ( condition ) { statements } .)
+    ELIF            shift and go to state 163
+
+
+state 151
+
+    (30) condition -> VARIABLE < VARIABLE AND VARIABLE . [ factor ] > VARIABLE
+    (31) condition -> VARIABLE < VARIABLE AND VARIABLE . [ factor ] < = VARIABLE
+
+    [               shift and go to state 164
+
+
+state 152
+
+    (28) condition -> VARIABLE [ factor ] > . VARIABLE
+
+    VARIABLE        shift and go to state 165
+
+
+state 153
+
+    (29) condition -> VARIABLE [ factor ] < . VARIABLE
+
+    VARIABLE        shift and go to state 166
+
+
+state 154
+
+    (34) whilE -> WHILE ( condition ) { statements } .
+
+    VARIABLE        reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    SELF            reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    PRINT           reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    IF              reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    WHILE           reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    FOR             reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    BREAK           reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    RETURN          reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    DEF             reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    CLASS           reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    $end            reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+    }               reduce using rule 34 (whilE -> WHILE ( condition ) { statements } .)
+
+
+state 155
+
+    (21) for -> FOR ( operation ; condition ; operation . ) { statements }
+
+    )               shift and go to state 167
+
+
+state 156
+
+    (61) function -> DEF VARIABLE ( sentence ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 168
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 157
+
+    (62) function -> DEF VARIABLE ( SELF , sentence ) . { statements }
+
+    {               shift and go to state 169
+
+
+state 158
+
+    (63) function -> DEF VARIABLE ( SELF ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 170
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 159
+
+    (66) init -> DEF INIT ( SELF . , VARIABLE , VARIABLE , VARIABLE ) { statements }
+
+    ,               shift and go to state 171
+
+
+state 160
+
+    (67) runclass -> VARIABLE = VARIABLE ( STR , NUMBER , . NUMBER )
+
+    NUMBER          shift and go to state 172
+
+
+state 161
+
+    (38) modification -> VARIABLE [ factor ] = VARIABLE [ factor . ]
+
+    ]               shift and go to state 173
+
+
+state 162
+
+    (40) modification -> SELF . VARIABLE = SELF . VARIABLE + . VARIABLE
+
+    VARIABLE        shift and go to state 174
+
+
+state 163
+
+    (33) iF -> IF ( condition ) { statements } ELIF . ( condition ) { statements } ELSE { statements }
+
+    (               shift and go to state 175
+
+
+state 164
+
+    (30) condition -> VARIABLE < VARIABLE AND VARIABLE [ . factor ] > VARIABLE
+    (31) condition -> VARIABLE < VARIABLE AND VARIABLE [ . factor ] < = VARIABLE
+    (53) factor -> . VARIABLE
+    (54) factor -> . ( expression )
+    (55) factor -> . NUMBER
+
+    VARIABLE        shift and go to state 51
+    (               shift and go to state 47
+    NUMBER          shift and go to state 53
+
+    factor                         shift and go to state 176
+
+state 165
+
+    (28) condition -> VARIABLE [ factor ] > VARIABLE .
+
+    )               reduce using rule 28 (condition -> VARIABLE [ factor ] > VARIABLE .)
+    ;               reduce using rule 28 (condition -> VARIABLE [ factor ] > VARIABLE .)
+
+
+state 166
+
+    (29) condition -> VARIABLE [ factor ] < VARIABLE .
+
+    )               reduce using rule 29 (condition -> VARIABLE [ factor ] < VARIABLE .)
+    ;               reduce using rule 29 (condition -> VARIABLE [ factor ] < VARIABLE .)
+
+
+state 167
+
+    (21) for -> FOR ( operation ; condition ; operation ) . { statements }
+
+    {               shift and go to state 177
+
+
+state 168
+
+    (61) function -> DEF VARIABLE ( sentence ) { statements } .
+
+    VARIABLE        reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    SELF            reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    PRINT           reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    IF              reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    WHILE           reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    FOR             reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    BREAK           reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    RETURN          reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    DEF             reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    CLASS           reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    $end            reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+    }               reduce using rule 61 (function -> DEF VARIABLE ( sentence ) { statements } .)
+
+
+state 169
+
+    (62) function -> DEF VARIABLE ( SELF , sentence ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 178
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 170
+
+    (63) function -> DEF VARIABLE ( SELF ) { statements } .
+
+    VARIABLE        reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    SELF            reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    PRINT           reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    IF              reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    WHILE           reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    FOR             reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    BREAK           reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    RETURN          reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    DEF             reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    CLASS           reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    $end            reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+    }               reduce using rule 63 (function -> DEF VARIABLE ( SELF ) { statements } .)
+
+
+state 171
+
+    (66) init -> DEF INIT ( SELF , . VARIABLE , VARIABLE , VARIABLE ) { statements }
+
+    VARIABLE        shift and go to state 179
+
+
+state 172
+
+    (67) runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER . )
+
+    )               shift and go to state 180
+
+
+state 173
+
+    (38) modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .
+
+    VARIABLE        reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    SELF            reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    PRINT           reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    IF              reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    WHILE           reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    FOR             reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    BREAK           reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    RETURN          reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    DEF             reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    CLASS           reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    $end            reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+    }               reduce using rule 38 (modification -> VARIABLE [ factor ] = VARIABLE [ factor ] .)
+
+
+state 174
+
+    (40) modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .
+
+    VARIABLE        reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    SELF            reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    PRINT           reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    IF              reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    WHILE           reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    FOR             reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    BREAK           reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    RETURN          reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    DEF             reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    CLASS           reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    $end            reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+    }               reduce using rule 40 (modification -> SELF . VARIABLE = SELF . VARIABLE + VARIABLE .)
+
+
+state 175
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( . condition ) { statements } ELSE { statements }
+    (22) condition -> . VARIABLE > VARIABLE
+    (23) condition -> . VARIABLE < VARIABLE
+    (24) condition -> . VARIABLE > NUMBER
+    (25) condition -> . VARIABLE < NUMBER
+    (26) condition -> . VARIABLE < = VARIABLE
+    (27) condition -> . VARIABLE > = VARIABLE
+    (28) condition -> . VARIABLE [ factor ] > VARIABLE
+    (29) condition -> . VARIABLE [ factor ] < VARIABLE
+    (30) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE
+    (31) condition -> . VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE
+
+    VARIABLE        shift and go to state 64
+
+    condition                      shift and go to state 181
+
+state 176
+
+    (30) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor . ] > VARIABLE
+    (31) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor . ] < = VARIABLE
+
+    ]               shift and go to state 182
+
+
+state 177
+
+    (21) for -> FOR ( operation ; condition ; operation ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    operation                      shift and go to state 5
+    statements                     shift and go to state 183
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 178
+
+    (62) function -> DEF VARIABLE ( SELF , sentence ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 184
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 179
+
+    (66) init -> DEF INIT ( SELF , VARIABLE . , VARIABLE , VARIABLE ) { statements }
+
+    ,               shift and go to state 185
+
+
+state 180
+
+    (67) runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .
+
+    VARIABLE        reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    SELF            reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    PRINT           reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    IF              reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    WHILE           reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    FOR             reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    BREAK           reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    RETURN          reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    DEF             reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    CLASS           reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    $end            reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+    }               reduce using rule 67 (runclass -> VARIABLE = VARIABLE ( STR , NUMBER , NUMBER ) .)
+
+
+state 181
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition . ) { statements } ELSE { statements }
+
+    )               shift and go to state 186
+
+
+state 182
+
+    (30) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] . > VARIABLE
+    (31) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] . < = VARIABLE
+
+    >               shift and go to state 188
+    <               shift and go to state 187
+
+
+state 183
+
+    (21) for -> FOR ( operation ; condition ; operation ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 189
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    operation                      shift and go to state 5
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 184
+
+    (62) function -> DEF VARIABLE ( SELF , sentence ) { statements } .
+
+    VARIABLE        reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    SELF            reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    PRINT           reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    IF              reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    WHILE           reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    FOR             reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    BREAK           reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    RETURN          reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    DEF             reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    CLASS           reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    $end            reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+    }               reduce using rule 62 (function -> DEF VARIABLE ( SELF , sentence ) { statements } .)
+
+
+state 185
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , . VARIABLE , VARIABLE ) { statements }
+
+    VARIABLE        shift and go to state 190
+
+
+state 186
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) . { statements } ELSE { statements }
+
+    {               shift and go to state 191
+
+
+state 187
+
+    (31) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] < . = VARIABLE
+
+    =               shift and go to state 192
+
+
+state 188
+
+    (30) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] > . VARIABLE
+
+    VARIABLE        shift and go to state 193
+
+
+state 189
+
+    (21) for -> FOR ( operation ; condition ; operation ) { statements } .
+
+    VARIABLE        reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    SELF            reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    PRINT           reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    IF              reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    WHILE           reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    FOR             reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    BREAK           reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    RETURN          reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    DEF             reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    CLASS           reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    $end            reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+    }               reduce using rule 21 (for -> FOR ( operation ; condition ; operation ) { statements } .)
+
+
+state 190
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , VARIABLE . , VARIABLE ) { statements }
+
+    ,               shift and go to state 194
+
+
+state 191
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) { . statements } ELSE { statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 195
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 192
+
+    (31) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] < = . VARIABLE
+
+    VARIABLE        shift and go to state 196
+
+
+state 193
+
+    (30) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE .
+
+    )               reduce using rule 30 (condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE .)
+    ;               reduce using rule 30 (condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] > VARIABLE .)
+
+
+state 194
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , VARIABLE , . VARIABLE ) { statements }
+
+    VARIABLE        shift and go to state 197
+
+
+state 195
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) { statements . } ELSE { statements }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 198
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 196
+
+    (31) condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE .
+
+    )               reduce using rule 31 (condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE .)
+    ;               reduce using rule 31 (condition -> VARIABLE < VARIABLE AND VARIABLE [ factor ] < = VARIABLE .)
+
+
+state 197
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE . ) { statements }
+
+    )               shift and go to state 199
+
+
+state 198
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } . ELSE { statements }
+
+    ELSE            shift and go to state 200
+
+
+state 199
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) . { statements }
+
+    {               shift and go to state 201
+
+
+state 200
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE . { statements }
+
+    {               shift and go to state 202
+
+
+state 201
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 203
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 202
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { . statements }
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statements                     shift and go to state 204
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 203
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 205
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 204
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements . }
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . operation
+    (6) statement -> . print
+    (7) statement -> . modification
+    (8) statement -> . iF
+    (9) statement -> . whilE
+    (10) statement -> . for
+    (11) statement -> . break
+    (12) statement -> . return
+    (13) statement -> . function
+    (14) statement -> . runfunction
+    (15) statement -> . class
+    (16) statement -> . runclass
+    (17) statement -> . runclassfunction
+    (35) assignment -> . VARIABLE = NUMBER
+    (36) assignment -> . VARIABLE = [ sentence ]
+    (37) assignment -> . SELF . VARIABLE = VARIABLE
+    (41) operation -> . VARIABLE = expression
+    (42) operation -> . VARIABLE + +
+    (43) operation -> . VARIABLE - -
+    (56) print -> . PRINT ( sentence )
+    (38) modification -> . VARIABLE [ factor ] = VARIABLE [ factor ]
+    (39) modification -> . VARIABLE [ factor ] = VARIABLE
+    (40) modification -> . SELF . VARIABLE = SELF . VARIABLE + VARIABLE
+    (32) iF -> . IF ( condition ) { statements }
+    (33) iF -> . IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements }
+    (34) whilE -> . WHILE ( condition ) { statements }
+    (21) for -> . FOR ( operation ; condition ; operation ) { statements }
+    (18) break -> . BREAK statements
+    (19) break -> . BREAK
+    (20) return -> . RETURN
+    (61) function -> . DEF VARIABLE ( sentence ) { statements }
+    (62) function -> . DEF VARIABLE ( SELF , sentence ) { statements }
+    (63) function -> . DEF VARIABLE ( SELF ) { statements }
+    (64) runfunction -> . VARIABLE ( sentence )
+    (65) class -> . CLASS VARIABLE { init statements }
+    (67) runclass -> . VARIABLE = VARIABLE ( STR , NUMBER , NUMBER )
+    (68) runclassfunction -> . VARIABLE . VARIABLE ( NUMBER )
+    (69) runclassfunction -> . VARIABLE . VARIABLE ( )
+
+    }               shift and go to state 206
+    VARIABLE        shift and go to state 18
+    SELF            shift and go to state 19
+    PRINT           shift and go to state 20
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    FOR             shift and go to state 23
+    BREAK           shift and go to state 24
+    RETURN          shift and go to state 25
+    DEF             shift and go to state 26
+    CLASS           shift and go to state 27
+
+    statement                      shift and go to state 28
+    assignment                     shift and go to state 4
+    operation                      shift and go to state 5
+    print                          shift and go to state 6
+    modification                   shift and go to state 7
+    iF                             shift and go to state 8
+    whilE                          shift and go to state 9
+    for                            shift and go to state 10
+    break                          shift and go to state 11
+    return                         shift and go to state 12
+    function                       shift and go to state 13
+    runfunction                    shift and go to state 14
+    class                          shift and go to state 15
+    runclass                       shift and go to state 16
+    runclassfunction               shift and go to state 17
+
+state 205
+
+    (66) init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .
+
+    VARIABLE        reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    SELF            reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    PRINT           reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    IF              reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    WHILE           reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    FOR             reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    BREAK           reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    RETURN          reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    DEF             reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+    CLASS           reduce using rule 66 (init -> DEF INIT ( SELF , VARIABLE , VARIABLE , VARIABLE ) { statements } .)
+
+
+state 206
+
+    (33) iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .
+
+    VARIABLE        reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    SELF            reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    PRINT           reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    IF              reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    WHILE           reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    FOR             reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    BREAK           reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    RETURN          reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    DEF             reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    CLASS           reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    $end            reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+    }               reduce using rule 33 (iF -> IF ( condition ) { statements } ELIF ( condition ) { statements } ELSE { statements } .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for VARIABLE in state 24 resolved as shift
+WARNING: shift/reduce conflict for SELF in state 24 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 24 resolved as shift
+WARNING: shift/reduce conflict for IF in state 24 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 24 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 24 resolved as shift
+WARNING: shift/reduce conflict for BREAK in state 24 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 24 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 24 resolved as shift
+WARNING: shift/reduce conflict for CLASS in state 24 resolved as shift
+WARNING: shift/reduce conflict for VARIABLE in state 40 resolved as shift
+WARNING: shift/reduce conflict for SELF in state 40 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 40 resolved as shift
+WARNING: shift/reduce conflict for IF in state 40 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 40 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 40 resolved as shift
+WARNING: shift/reduce conflict for BREAK in state 40 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 40 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 40 resolved as shift
+WARNING: shift/reduce conflict for CLASS in state 40 resolved as shift
+WARNING: reduce/reduce conflict in state 44 resolved using rule (assignment -> VARIABLE = NUMBER)
+WARNING: rejected rule (factor -> NUMBER) in state 44
